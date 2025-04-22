@@ -43,7 +43,9 @@ The entire pipeline is triggered on every push to the `master` branch, ensuring 
 Here are the basic main.py files for each service (User, Order, and Payment) to demonstrate the microservices' entry points.
 
 /user-service/main.py
-``
+
+```python
+
 from flask import Flask, jsonify
 
 app = Flask(__name__)
@@ -54,6 +56,7 @@ def home():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+```
 
 ## Example Dockerfile
 Here is an example of a Dockerfile for one of the services (User Service):
@@ -119,12 +122,12 @@ spec:
 ```
 
 ## How to Contribute
-Fork the repository.
-Create a feature branch (git checkout -b feature-name).
-Make your changes.
-Commit your changes (git commit -am 'Add new feature').
-Push to the branch (git push origin feature-name).
-Create a new Pull Request.
+- **Fork the repository**: 
+- **Create a feature branch (git checkout -b feature-name)**
+- **Make your changes.**
+- **Push to the branch (git push origin feature-name).**
+- **Create a new Pull Request.**
+
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
