@@ -26,17 +26,30 @@ jobs:
       - name: Log in to Amazon ECR
         uses: aws-actions/amazon-ecr-login@v2
         with:
-          region: us-east-1  # Ensure region is specified
-          mask-password: true  # Mask password in logs (recommended)
+          mask-password: true
           registry-type: private
           skip-logout: false
 
       # Step 4: Build and Push Docker images to ECR
       - name: Build and Push Docker images to ECR
         run: |
-          docker buildx build --file ./microservices-project/user-service/Dockerfile --tag 717279687729.dkr.ecr.us-east-1.amazonaws.com/user-service:latest --push 
-          docker buildx build --file ./microservices-project/order-service/Dockerfile --tag 717279687729.dkr.ecr.us-east-1.amazonaws.com/order-service:latest --push .
-          docker buildx build --file ./microservices-project/payment-service/Dockerfile --tag 717279687729.dkr.ecr.us-east-1.amazonaws.com/payment-service:latest --push .
+          docker buildx build \
+            --file ./microservices-project/user-service/Dockerfile \
+            --tag 717279687729.dkr.ecr.us-east-1.amazonaws.com/user-service:latest \
+            --push \
+            ./microservices-project/user-service
+
+          docker buildx build \
+            --file ./microservices-project/order-service/Dockerfile \
+            --tag 717279687729.dkr.ecr.us-east-1.amazonaws.com/order-service:latest \
+            --push \
+            ./microservices-project/order-service
+
+          docker buildx build \
+            --file ./microservices-project/payment-service/Dockerfile \
+            --tag 717279687729.dkr.ecr.us-east-1.amazonaws.com/payment-service:latest \
+            --push \
+            ./microservices-project/payment-service
 
       # Step 5: Set up kubectl for EKS
       - name: Set up kubectl for EKS
