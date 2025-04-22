@@ -34,12 +34,9 @@ jobs:
           aws-secret-access-key: ${AWS_SECRET_ACCESS_KEY }
           aws-region: us-east-1  # Update this with your region
 
-      - name: Deploy to EKS
-        uses: aws-actions/eks-update-kubeconfig@v1
-        with:
-          cluster-name: microservices-cluster
-          region: us-east-1
-
+      - name: Set up kubectl for EKS    
+        run:  | 
+           aws eks --region us-east-1 update-kubeconfig --name microservices-cluster
       - name: Deploy using kubectl
         run: |
           kubectl apply -f k8s/user-deployment.yaml
