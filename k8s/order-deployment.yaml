@@ -17,7 +17,7 @@ spec:
         image: 717279687729.dkr.ecr.us-east-1.amazonaws.com/order-service:latest
         ports:
         - containerPort: 8000
-        envFrom:   # <--- this line needed to align under 'container'
+        envFrom:   
         - secretRef:
             name: rds-secret
 ---
