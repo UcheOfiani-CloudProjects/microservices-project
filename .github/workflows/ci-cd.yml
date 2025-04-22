@@ -35,7 +35,7 @@ jobs:
           aws-region: us-east-1  # Update this with your region
 
       - name: Deploy to EKS
-        uses: eks-actions/eks-update-kubeconfig@v1
+        uses: aws-actions/eks-update-kubeconfig@v2
         with:
           cluster-name: microservices-cluster
           region: us-east-1
