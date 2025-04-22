@@ -10,18 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout the code from the repository
       - name: Checkout code
         uses: actions/checkout@v2
 
+      # Set up Docker Buildx
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
+      # Log in to Amazon ECR
       - name: Log in to Amazon ECR
         uses: aws-actions/amazon-ecr-login@v2
         with:
           mask-password: false  # Do not mask Docker password in logs
           registry-type: private  # Specify that it's a private registry
 
+      # Build and push Docker image to ECR
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
@@ -30,17 +34,32 @@ jobs:
           push: true
           tags: 717279687729.dkr.ecr.us-east-1.amazonaws.com/user-service:latest
 
+      # Set up AWS credentials for AWS CLI and other AWS-related actions
       - name: Set up AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY}}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1 # Ensure region is specified
+          aws-region: us-east-1  # Ensure the region is passed
 
+      # Ensure AWS CLI is the latest version
+      - name: Install AWS CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y awscli
+
+      # Debug AWS region and identity to ensure correct setup
+      - name: Debug AWS region and identity
+        run: |
+          aws sts get-caller-identity
+          aws configure get region
+
+      # Set up kubectl for EKS using AWS CLI (with the region explicitly passed)
       - name: Set up kubectl for EKS
         run: |
           aws eks --region us-east-1 update-kubeconfig --name microservices-cluster
 
+      # Deploy to Kubernetes using kubectl
       - name: Deploy using kubectl
         run: |
           kubectl apply -f k8s/user-deployment.yaml
