@@ -20,12 +20,13 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1  # Specify your AWS region here
+          aws-region: us-east-1  # Ensure region is specified
 
       # Step 3: Log in to Amazon ECR
       - name: Log in to Amazon ECR
         uses: aws-actions/amazon-ecr-login@v2
         with:
+          region: us-east-1
           mask-password: true
           registry-type: private
           skip-logout: false
@@ -34,22 +35,22 @@ jobs:
       - name: Build and Push Docker images to ECR
         run: |
           docker buildx build \
-            --file ./microservices-project/user-service/Dockerfile \
+            --file ./user-service/Dockerfile \
             --tag 717279687729.dkr.ecr.us-east-1.amazonaws.com/user-service:latest \
             --push \
-            ./microservices-project/user-service
+            ./user-service
 
           docker buildx build \
-            --file ./microservices-project/order-service/Dockerfile \
+            --file ./order-service/Dockerfile \
             --tag 717279687729.dkr.ecr.us-east-1.amazonaws.com/order-service:latest \
             --push \
-            ./microservices-project/order-service
+            ./order-service
 
           docker buildx build \
-            --file ./microservices-project/payment-service/Dockerfile \
+            --file ./payment-service/Dockerfile \
             --tag 717279687729.dkr.ecr.us-east-1.amazonaws.com/payment-service:latest \
             --push \
-            ./microservices-project/payment-service
+            ./payment-service
 
       # Step 5: Set up kubectl for EKS
       - name: Set up kubectl for EKS
