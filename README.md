@@ -41,7 +41,7 @@ Set up kubectl for EKS: Configures kubectl to interact with the EKS cluster.
 Deploy to EKS: The services are deployed to EKS using Kubernetes manifests (user-deployment.yaml, order-deployment.yaml, and payment-deployment.yaml).
 
 ## File Structure
-``
+
 /.github
     /workflows
         ci-cd.yml              # GitHub Actions workflow file for CI/CD
@@ -58,11 +58,11 @@ Deploy to EKS: The services are deployed to EKS using Kubernetes manifests (user
         payment-deployment.yaml # Kubernetes deployment for payment service ``
 
 ## Example Code
-Here are the basic main.py files for each service (User, Order, and Payment) to demonstrate the entry points of the microservices.
+Here are the basic main.py files for each service (User, Order, and Payment) to demonstrate the microservices' entry points.
 
 /user-service/main.py
-
-`` from flask import Flask, jsonify
+``
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
@@ -71,11 +71,13 @@ def home():
     return jsonify({"message": "User Service is running!"})
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000) ``
+    app.run(host="0.0.0.0", port=5000) 
+``
 
 /order-service/main.py
 
-``from flask import Flask, jsonify
+``
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
@@ -84,11 +86,13 @@ def home():
     return jsonify({"message": "Order Service is running!"})
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5001) ``
+    app.run(host="0.0.0.0", port=5001) 
+``
 
 /payment-service/main.py
 
-``from flask import Flask, jsonify
+``
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
@@ -97,7 +101,8 @@ def home():
     return jsonify({"message": "Payment Service is running!"})
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5002) ``
+    app.run(host="0.0.0.0", port=5002) 
+``
 
 ## Example Dockerfile
 Here is an example of a Dockerfile for one of the services (User Service):
@@ -109,7 +114,7 @@ FROM python:3.8-slim
 WORKDIR /app
 
 # Copy the requirements and install dependencies
-COPY requirements.txt .
+COPY requirements.txt 
 RUN pip install -r requirements.txt
 
 # Copy the source code
