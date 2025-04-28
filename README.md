@@ -39,11 +39,10 @@ The entire pipeline is triggered on every push to the `master` branch, ensuring 
 
 ## File Structure
 
-.
+```bash
 ├── .github/
 │   └── workflows/
 │       └── ci-cd.yml     # GitHub Actions workflow file
-
 ├── microservices-project/
 │   ├── user-service/
 │   │   └── Dockerfile
@@ -51,14 +50,12 @@ The entire pipeline is triggered on every push to the `master` branch, ensuring 
 │   │   └── Dockerfile
 │   └── payment-service/
 │       └── Dockerfile
-
 ├── k8s/
 │   ├── user-deployment.yaml
 │   ├── order-deployment.yaml
 │   └── payment-deployment.yaml
-
 └── README.md
-
+```
 
 ## Example Code
 Here are the basic main.py files for each service (User, Order, and Payment) to demonstrate the microservices' entry points.
