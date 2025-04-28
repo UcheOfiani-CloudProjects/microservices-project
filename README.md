@@ -28,6 +28,7 @@ The entire pipeline is triggered on every push to the `master` branch, ensuring 
 ├── .github/
 │   └── workflows/
 │       └── ci-cd.yml     # GitHub Actions workflow file
+
 ├── microservices-project/
 │   ├── user-service/
 │   │   └── Dockerfile
@@ -35,10 +36,12 @@ The entire pipeline is triggered on every push to the `master` branch, ensuring 
 │   │   └── Dockerfile
 │   └── payment-service/
 │       └── Dockerfile
+
 ├── k8s/
 │   ├── user-deployment.yaml
 │   ├── order-deployment.yaml
 │   └── payment-deployment.yaml
+
 └── README.md
 
 
