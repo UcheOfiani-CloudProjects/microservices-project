@@ -10,7 +10,7 @@ This project provides a fully automated pipeline for:
 - **Pushing Docker images to Amazon ECR.**
 - **Deploying to Amazon EKS using Kubernetes.**
 
-The entire pipeline is triggered on every push to the `master` branch, ensuring that the latest code is automatically built, tested, and deployed.
+The entire pipeline is triggered on every push to the `master` branch, ensuring the latest code is automatically built, tested, and deployed.
 
 ## **Technologies Used**
 
@@ -24,20 +24,23 @@ The entire pipeline is triggered on every push to the `master` branch, ensuring 
 
 ## File Structure
 
-/.github
-    /workflows
-        ci-cd.yml              # GitHub Actions workflow file for CI/CD
-/microservices-project
-    /user-service
-        Dockerfile             # Dockerfile for user service
-    /order-service
-        Dockerfile             # Dockerfile for order service
-    /payment-service
-        Dockerfile             # Dockerfile for payment service
-    /k8s
-        user-deployment.yaml  # Kubernetes deployment for user service
-        order-deployment.yaml # Kubernetes deployment for order service
-        payment-deployment.yaml # Kubernetes deployment for payment service ``
+.
+├── .github/
+│   └── workflows/
+│       └── ci-cd.yml     # GitHub Actions workflow file
+├── microservices-project/
+│   ├── user-service/
+│   │   └── Dockerfile
+│   ├── order-service/
+│   │   └── Dockerfile
+│   └── payment-service/
+│       └── Dockerfile
+├── k8s/
+│   ├── user-deployment.yaml
+│   ├── order-deployment.yaml
+│   └── payment-deployment.yaml
+└── README.md
+
 
 ## Example Code
 Here are the basic main.py files for each service (User, Order, and Payment) to demonstrate the microservices' entry points.
