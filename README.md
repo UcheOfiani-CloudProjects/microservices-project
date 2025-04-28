@@ -10,6 +10,21 @@ This project provides a fully automated pipeline for:
 - **Pushing Docker images to Amazon ECR.**
 - **Deploying to Amazon EKS using Kubernetes.**
 
+## Architecture Diagram
+
+```mermaid
+graph LR
+    A[GitHub Actions] --> B[Docker Build]
+    B --> C[Push to Amazon ECR]
+    C --> D[Amazon EKS Deployment]
+    D --> E[User Service]
+    D --> F[Order Service]
+    D --> G[Payment Service]
+    E --> H[Kubernetes Cluster]
+    F --> H[Kubernetes Cluster]
+    G --> H[Kubernetes Cluster]
+```
+
 The entire pipeline is triggered on every push to the `master` branch, ensuring the latest code is automatically built, tested, and deployed.
 
 ## **Technologies Used**
