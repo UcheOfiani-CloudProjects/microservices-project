@@ -13,7 +13,7 @@ This project provides a fully automated pipeline for:
 ## Architecture Diagram
 
 ```mermaid
-graph LR
+graph RL
     A[GitHub Actions] --> B[Docker Build]
     B --> C[Push to Amazon ECR]
     C --> D[Amazon EKS Deployment]
